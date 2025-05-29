@@ -20,7 +20,7 @@ jobs:
         host: windows
         target: desktop
         arch: win64_msvc2019_64
-        modules: WebSockets Widgets Core Network Gui
+        modules: qtbase qtwebsockets qtwidgets qtgui qtnetwork
         outputdir: D:/Qt
 
     - name: Configure CMake
