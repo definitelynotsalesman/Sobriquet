@@ -1,6 +1,6 @@
-# Ignore build cache and build outputs
-/build
-CMakeFiles/
+# Ignore build artifacts
+/build/
 CMakeCache.txt
+CMakeFiles/
 cmake_install.cmake
 Makefile
