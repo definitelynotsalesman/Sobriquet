@@ -20,12 +20,12 @@ jobs:
         host: windows
         target: desktop
         arch: win64_msvc2019_64
-        modules: |
-          WebSockets
-          Widgets
-          Core
-          Network
-          Gui
+        modules:
+          - WebSockets
+          - Widgets
+          - Core
+          - Network
+          - Gui
 
 
     - name: Configure CMake
