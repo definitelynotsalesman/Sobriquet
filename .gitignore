@@ -1,0 +1,6 @@
+# Ignore build cache and build outputs
+/build
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
