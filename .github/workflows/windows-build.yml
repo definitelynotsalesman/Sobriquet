@@ -24,16 +24,16 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install --upgrade aqtinstall
 
-    - name: Install Qt 6.6.0 with required modules (MSVC2019)
+    - name: Install Qt 6.6.0 with required modules (MSVC2022)
       run: |
-        python -m aqt install-qt windows desktop 6.6.0 win64_msvc2019_64 --outputdir D:/a/Sobriquet/Qt/Qt --modules qtwebsockets qtcharts qtquick3d
+        python -m aqt install-qt windows desktop 6.6.0 win64_msvc2022_64 --outputdir D:/a/Sobriquet/Qt/Qt --modules qtwebsockets qtcharts qtquick3d
 
     - name: Show installed Qt directory
-      run: dir D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2019_64
+      run: dir D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2022_64
 
-    - name: Configure and build with CMake (Visual Studio 2019)
+    - name: Configure and build with CMake (Visual Studio 2022)
       run: |
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 16 2019" -DCMAKE_PREFIX_PATH="D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2019_64"
+        cmake .. -G "Visual Studio 17 2022" -DCMAKE_PREFIX_PATH="D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2022_64"
         cmake --build . --config Release
