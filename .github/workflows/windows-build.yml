@@ -19,23 +19,14 @@ jobs:
       with:
         python-version: 3.11
 
-    - name: Install latest aqtinstall (optional)
+    - name: Install latest aqtinstall
       run: |
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install --upgrade aqtinstall
-    - name: List available Qt modules for 6.6.0 on Windows MSVC2019 64-bit
-      run: python -m aqt list-qt windows desktop --modules 6.6.0 win64_msvc2019_64
-
 
     - name: Install Qt 6.6.0 with required modules
-      uses: jurplel/install-qt-action@v3
-      with:
-        dir: D:/a/Sobriquet/Qt
-        version: 6.6.0
-        host: windows
-        target: desktop
-        arch: win64_msvc2019_64
-        modules: qtbase qtwebsockets qtwidgets qtgui qtnetwork
+      run: |
+        python -m aqt install-qt windows desktop 6.6.0 win64_msvc2019_64 --outputdir D:/a/Sobriquet/Qt/Qt --modules base websockets widgets gui network
 
     - name: Show installed Qt directory
-      run: dir D:/a/Sobriquet/Qt
+      run: dir D:/a/Sobriquet/Qt/Qt
