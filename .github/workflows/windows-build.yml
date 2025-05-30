@@ -36,3 +36,22 @@ jobs:
     - name: Add Qt bin to PATH
       run: |
         echo "${{ env.QT_DIR }}\bin" >> $GITHUB_PATH
+
+    - name: Configure with CMake
+      run: cmake -S . -B build -DCMAKE_PREFIX_PATH="${{ env.QT_DIR }}" -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build project
+      run: cmake --build build --config Release
+
+    - name: Deploy Qt dependencies (windeployqt)
+      run: |
+        "${{ env.QT_DIR }}\bin\windeployqt.exe" build\Release\MyApp.exe
+
+    - name: List output files
+      run: dir build\Release
+
+    - name: Upload .exe and dependencies
+      uses: actions/upload-artifact@v4
+      with:
+        name: Sobriquet
+        path: build/Release/**
