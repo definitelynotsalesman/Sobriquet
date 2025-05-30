@@ -24,24 +24,20 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install --upgrade aqtinstall
 
-    - name: List available Qt modules for 6.6.0
-      run: python -m aqt list-qt windows desktop --modules 6.6.0 win64_msvc2019_64
-
     - name: Install Qt 6.6.0 with required modules
       run: |
-        python -m aqt install-qt windows desktop 6.6.0 win64_msvc2019_64 --outputdir D:/a/Sobriquet/Qt/Qt --modules qtwebsockets qtcharts qtquick3d
-        # Note: base, widgets, gui, network are part of the default install, so no need to specify them
+        python -m aqt install-qt windows desktop 6.6.0 win64_msvc2019_64 `
+          --outputdir Qt `
+          --modules qtwebsockets qtcharts qtquick3d
 
     - name: Show installed Qt directory
-      run: dir D:/a/Sobriquet/Qt/Qt
+      run: dir Qt\6.6.0\msvc2019_64
 
-#works up to this point
-
-    - name: Build with CMake
+    - name: Configure and build with CMake
       run: |
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 16 2019" -DCMAKE_PREFIX_PATH="D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2019_64"
+        cmake .. -G "Visual Studio 16 2019" -A x64 -DCMAKE_PREFIX_PATH="${{ github.workspace }}\Qt\6.6.0\msvc2019_64"
         cmake --build . --config Release
 
     - name: Upload built .exe
