@@ -41,7 +41,7 @@ jobs:
         cmake --build . --config Release
 
     - name: Upload built .exe
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.3
       with:
         name: app-exe
         path: build/Release/*.exe
