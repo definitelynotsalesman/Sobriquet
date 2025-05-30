@@ -28,3 +28,15 @@ jobs:
       run: |
         python -m aqt install-qt windows desktop 6.6.0 win64_msvc2019_64 --outputdir D:/a/Sobriquet/Qt/Qt --modules qtwebsockets qtcharts qtquick3d
 
+    - name: Setup MSVC environment
+      run: |
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+
+    - name: Add Qt to PATH
+      run: |
+        echo "::add-path::D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2019_64/bin"
+        
+    - name: Configure and build with CMake
+      run: |
+        cmake -B build -S . -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="D:/a/Sobriquet/Qt/Qt/6.6.0/msvc2019_64"
+        cmake --build build --config Release
